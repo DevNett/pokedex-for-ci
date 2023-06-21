@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Echo the message
+        if: ${{ github.event_name == 'push' }} 
         run: |
           echo "Hola midudevs! ${{secrets.HEROKU_API_KEY}}"
       - name: Dime la fecha
