@@ -22,3 +22,8 @@ jobs:
         run: NODE_OPTIONS=--openssl-legacy-provider npm run build
       - name: Test  
         run: npm test
+      - name: teste2e
+        uses: cypress-io/github-action@v5
+          commando: npm run test:e2e
+          start: npm run start-test
+          wait-on: http://localhost:5000
