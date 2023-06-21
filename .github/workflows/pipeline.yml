@@ -19,6 +19,6 @@ jobs:
       - name: Lint
         run: npm run eslint
       - name: Build
-        run: npm run build
+        run: NODE_OPTIONS=--openssl-legacy-provider npm run build
       - name: Test  
         run: npm test
