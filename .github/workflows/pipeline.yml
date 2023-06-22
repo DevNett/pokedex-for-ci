@@ -28,6 +28,7 @@ jobs:
         run: npm run eslint
 
   build:
+    needs: [lint]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
