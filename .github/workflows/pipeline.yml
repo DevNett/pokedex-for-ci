@@ -7,14 +7,14 @@ on:
 
 jobs:
   avoid_redundancy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Cancel Previoud redundant builds
         uses: styfle/cancel-workflow-action@0.9.1
         with: 
           access_token: ${{ github.token }}
   lint:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
         with:
@@ -29,7 +29,7 @@ jobs:
 
   build:
     needs: [lint]
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
         with:
@@ -48,7 +48,7 @@ jobs:
 
   test:
     needs: [lint, build]
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
         with:
@@ -67,7 +67,7 @@ jobs:
 
   e2e-test:
     needs: [lint, build]
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
         with:
@@ -90,7 +90,7 @@ jobs:
 
   deploy:
     needs: [test,e2e-test]
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Echo the message
         if: ${{ github.event_name == 'push' }} 
